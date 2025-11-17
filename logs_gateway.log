@@ -1,0 +1,72 @@
+[GATEWAY] 2025-11-17 15:33:19,928 - INFO - Iniciando API Gateway na porta 8000
+[GATEWAY] 2025-11-17 15:33:19,928 - INFO - Interface web disponível em: http://localhost:8000
+INFO:     Started server process [145342]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:53770 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53770 - "GET /static/style.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53772 - "GET /static/script.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53770 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+[GATEWAY] 2025-11-17 15:33:39,696 - INFO - HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:33:39,722 - INFO - HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:33:39,746 - INFO - HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53772 - "GET /health HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:33:58,659 - INFO - [GATEWAY] Registrando usuário: teresa@gmail.com
+[GATEWAY] 2025-11-17 15:33:58,705 - INFO - HTTP Request: POST http://localhost:8001/users/create "HTTP/1.1 201 Created"
+[GATEWAY] 2025-11-17 15:33:58,707 - INFO - [GATEWAY] Usuário registrado: user_id=1
+INFO:     127.0.0.1:42844 - "POST /gateway/register HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:33:58,719 - INFO - [GATEWAY] Buscando pedidos do usuário 1
+[GATEWAY] 2025-11-17 15:33:58,743 - INFO - HTTP Request: GET http://localhost:8001/users/1 "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:33:58,766 - INFO - HTTP Request: GET http://localhost:8002/orders/user/1 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:42844 - "GET /gateway/user/1/orders HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:34:09,683 - INFO - HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:09,700 - INFO - HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:09,716 - INFO - HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56674 - "GET /health HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:34:12,761 - INFO - [GATEWAY] Iniciando processamento de compra para user_id=1
+[GATEWAY] 2025-11-17 15:34:12,761 - INFO - [GATEWAY] Passo 1/3: Validando usuário 1
+[GATEWAY] 2025-11-17 15:34:12,786 - INFO - HTTP Request: GET http://localhost:8001/users/1 "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:12,787 - INFO - [GATEWAY] Usuário validado: teresa@gmail.com
+[GATEWAY] 2025-11-17 15:34:12,787 - INFO - [GATEWAY] Passo 2/3: Criando pedido
+[GATEWAY] 2025-11-17 15:34:12,812 - INFO - HTTP Request: POST http://localhost:8002/orders/create "HTTP/1.1 201 Created"
+[GATEWAY] 2025-11-17 15:34:12,813 - INFO - [GATEWAY] Pedido criado: order_id=1000
+[GATEWAY] 2025-11-17 15:34:12,813 - INFO - [GATEWAY] Passo 3/3: Processando pagamento
+[GATEWAY] 2025-11-17 15:34:12,835 - INFO - HTTP Request: POST http://localhost:8003/billing/charge "HTTP/1.1 201 Created"
+[GATEWAY] 2025-11-17 15:34:12,836 - INFO - [GATEWAY] Pagamento processado: status=paid
+[GATEWAY] 2025-11-17 15:34:12,855 - INFO - HTTP Request: PUT http://localhost:8002/orders/1000/status?status=completed "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:12,856 - INFO - [GATEWAY] Status do pedido atualizado: completed
+[GATEWAY] 2025-11-17 15:34:12,856 - INFO - [GATEWAY] Compra finalizada: order_id=1000, status=paid
+INFO:     127.0.0.1:56674 - "POST /gateway/purchase HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:34:12,864 - INFO - [GATEWAY] Buscando pedidos do usuário 1
+[GATEWAY] 2025-11-17 15:34:12,887 - INFO - HTTP Request: GET http://localhost:8001/users/1 "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:12,909 - INFO - HTTP Request: GET http://localhost:8002/orders/user/1 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:56674 - "GET /gateway/user/1/orders HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:34:29,447 - INFO - [GATEWAY] Autenticando usuário: teresa@gmail.com
+[GATEWAY] 2025-11-17 15:34:29,476 - INFO - HTTP Request: POST http://localhost:8001/users/login "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:29,477 - INFO - [GATEWAY] Login bem-sucedido: user_id=1
+INFO:     127.0.0.1:38578 - "POST /gateway/login HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:34:29,485 - INFO - [GATEWAY] Buscando pedidos do usuário 1
+[GATEWAY] 2025-11-17 15:34:29,507 - INFO - HTTP Request: GET http://localhost:8001/users/1 "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:29,531 - INFO - HTTP Request: GET http://localhost:8002/orders/user/1 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:38578 - "GET /gateway/user/1/orders HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:34:39,678 - INFO - HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:39,694 - INFO - HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:34:39,709 - INFO - HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:58460 - "GET /health HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:35:02,997 - INFO - [GATEWAY] Autenticando usuário: teresa@gmail.com
+[GATEWAY] 2025-11-17 15:35:03,050 - INFO - HTTP Request: POST http://localhost:8001/users/login "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:35:03,051 - INFO - [GATEWAY] Login bem-sucedido: user_id=1
+INFO:     127.0.0.1:53558 - "POST /gateway/login HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:35:03,059 - INFO - [GATEWAY] Buscando pedidos do usuário 1
+[GATEWAY] 2025-11-17 15:35:03,079 - INFO - HTTP Request: GET http://localhost:8001/users/1 "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:35:03,101 - INFO - HTTP Request: GET http://localhost:8002/orders/user/1 "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53558 - "GET /gateway/user/1/orders HTTP/1.1" 200 OK
+[GATEWAY] 2025-11-17 15:35:09,681 - INFO - HTTP Request: GET http://localhost:8001/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:35:09,699 - INFO - HTTP Request: GET http://localhost:8002/health "HTTP/1.1 200 OK"
+[GATEWAY] 2025-11-17 15:35:09,716 - INFO - HTTP Request: GET http://localhost:8003/health "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:34026 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [145342]

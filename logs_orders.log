@@ -1,0 +1,31 @@
+[ORDERS-SERVICE] 2025-11-17 15:33:15,819 - INFO - Iniciando Orders Service na porta 8002
+INFO:     Started server process [145296]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49050 - "GET /health HTTP/1.1" 200 OK
+[ORDERS-SERVICE] 2025-11-17 15:33:58,765 - INFO - Buscando pedidos do usuário: user_id=1
+[ORDERS-SERVICE] 2025-11-17 15:33:58,765 - INFO - Encontrados 0 pedidos para user_id=1
+INFO:     127.0.0.1:52728 - "GET /orders/user/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34520 - "GET /health HTTP/1.1" 200 OK
+[ORDERS-SERVICE] 2025-11-17 15:34:12,811 - INFO - Criando pedido para user_id=1, amount=100.0
+[ORDERS-SERVICE] 2025-11-17 15:34:12,811 - INFO - Pedido criado com sucesso: order_id=1000
+INFO:     127.0.0.1:34532 - "POST /orders/create HTTP/1.1" 201 Created
+[ORDERS-SERVICE] 2025-11-17 15:34:12,854 - INFO - Atualizando status do pedido 1000 para completed
+[ORDERS-SERVICE] 2025-11-17 15:34:12,854 - INFO - Status atualizado: order_id=1000, status=completed
+INFO:     127.0.0.1:34534 - "PUT /orders/1000/status?status=completed HTTP/1.1" 200 OK
+[ORDERS-SERVICE] 2025-11-17 15:34:12,908 - INFO - Buscando pedidos do usuário: user_id=1
+[ORDERS-SERVICE] 2025-11-17 15:34:12,908 - INFO - Encontrados 1 pedidos para user_id=1
+INFO:     127.0.0.1:34536 - "GET /orders/user/1 HTTP/1.1" 200 OK
+[ORDERS-SERVICE] 2025-11-17 15:34:29,529 - INFO - Buscando pedidos do usuário: user_id=1
+[ORDERS-SERVICE] 2025-11-17 15:34:29,530 - INFO - Encontrados 1 pedidos para user_id=1
+INFO:     127.0.0.1:52140 - "GET /orders/user/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49242 - "GET /health HTTP/1.1" 200 OK
+[ORDERS-SERVICE] 2025-11-17 15:35:03,100 - INFO - Buscando pedidos do usuário: user_id=1
+[ORDERS-SERVICE] 2025-11-17 15:35:03,100 - INFO - Encontrados 1 pedidos para user_id=1
+INFO:     127.0.0.1:46722 - "GET /orders/user/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40604 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [145296]

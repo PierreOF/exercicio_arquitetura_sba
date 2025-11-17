@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Microserviços - E-Commerce</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Microserviços</h1>
+            <p class="subtitle">Arquitetura Gateway + Users + Orders + Billing</p>
+            <div id="health-status" class="health-status"></div>
+        </header>
+
+        <!-- Seção de Login/Registro -->
+        <div id="auth-section" class="section">
+            <div class="card-grid">
+                <!-- Card de Registro -->
+                <div class="card">
+                    <h2>Criar Conta</h2>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="reg-name">Nome Completo</label>
+                            <input type="text" id="reg-name" required placeholder="João Silva">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Email</label>
+                            <input type="email" id="reg-email" required placeholder="joao@email.com">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </form>
+                </div>
+
+                <!-- Card de Login -->
+                <div class="card">
+                    <h2>Fazer Login</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required placeholder="joao@email.com">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção do Usuário Logado -->
+        <div id="user-section" class="section hidden">
+            <div class="user-info">
+                <div>
+                    <h2>Bem-vindo, <span id="user-name"></span>!</h2>
+                    <p>Email: <span id="user-email"></span> | ID: <span id="user-id"></span></p>
+                </div>
+                <button id="logout-btn" class="btn btn-secondary">Sair</button>
+            </div>
+
+            <div class="card-grid">
+                <!-- Card de Compra -->
+                <div class="card">
+                    <h2>Realizar Compra</h2>
+                    <form id="purchase-form">
+                        <div class="form-group">
+                            <label for="product-name">Produto</label>
+                            <input type="text" id="product-name" required placeholder="Nome do produto">
+                        </div>
+                        <div class="form-group">
+                            <label for="product-amount">Valor (R$)</label>
+                            <input type="number" id="product-amount" step="0.01" min="0.01" required placeholder="99.90">
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method">Método de Pagamento</label>
+                            <select id="payment-method">
+                                <option value="credit_card">Cartão de Crédito</option>
+                                <option value="debit_card">Cartão de Débito</option>
+                                <option value="pix">PIX</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Comprar</button>
+                    </form>
+                </div>
+
+                <!-- Card de Pedidos -->
+                <div class="card">
+                    <h2>Meus Pedidos</h2>
+                    <button id="refresh-orders-btn" class="btn btn-secondary">Atualizar Pedidos</button>
+                    <div id="orders-list" class="orders-list">
+                        <p class="empty-state">Carregando pedidos...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensagens de Notificação -->
+        <div id="notification" class="notification hidden"></div>
+
+        <!-- Seção de Arquitetura -->
+        <div class="section">
+            <div class="card">
+                <h2>Arquitetura do Sistema</h2>
+                <div class="architecture-diagram">
+                    <div class="arch-layer">
+                        <div class="arch-box ui-box">
+                            <h3>Interface Web</h3>
+                            <p>Você está aqui</p>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓</div>
+                    <div class="arch-layer">
+                        <div class="arch-box gateway-box">
+                            <h3>Gateway</h3>
+                            <p>Porta 8000</p>
+                            <span id="status-gateway" class="status-indicator"></span>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">↓ ↓ ↓</div>
+                    <div class="arch-layer services-layer">
+                        <div class="arch-box users-box">
+                            <h3>Users</h3>
+                            <p>Porta 8001</p>
+                            <span id="status-users" class="status-indicator"></span>
+                        </div>
+                        <div class="arch-box orders-box">
+                            <h3>Orders</h3>
+                            <p>Porta 8002</p>
+                            <span id="status-orders" class="status-indicator"></span>
+                        </div>
+                        <div class="arch-box billing-box">
+                            <h3>Billing</h3>
+                            <p>Porta 8003</p>
+                            <span id="status-billing" class="status-indicator"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Sistema de Demonstração de Arquitetura de Microserviços</p>
+            <p>Python + FastAPI + Gateway Pattern</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
